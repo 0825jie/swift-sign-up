@@ -31,9 +31,9 @@ class ViewController: UIViewController {
         tf.placeholder = "Email"
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
-        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.font = UIFont.systemFont(ofSize: 18)
         
-//        tf.addTarget(self, action: #selector(), for: .editingChanged)
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         
         return tf
     }()
@@ -45,23 +45,35 @@ class ViewController: UIViewController {
         tf.isSecureTextEntry = true
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
-        tf.font = UIFont.systemFont(ofSize: 14)
-//        tf.addTarget(self, action: #selector(), for: .editingChanged)
+        tf.font = UIFont.systemFont(ofSize: 18)
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
+    
+    @objc func handleTextInputChange() {
+        let isFormValid = emailTextField.text?.isEmpty == false  && passwordTextField.text?.isEmpty == false
+        
+        if isFormValid {
+            signUpButton.isEnabled = true
+            signUpButton.backgroundColor = .H2f3b6a
+        } else {
+            signUpButton.isEnabled = false
+            signUpButton.backgroundColor = UIColor(red: 0.6392, green: 0.702, blue: 0.8196, alpha: 1.0)
+        }
+    }
     
     let signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
-        button.backgroundColor = UIColor(red: 0.7569, green: 0.7686, blue: 0.7529, alpha: 1.0)
+        button.backgroundColor = UIColor(red: 0.6392, green: 0.702, blue: 0.8196, alpha: 1.0)
         
         button.layer.cornerRadius = 5
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
         button.setTitleColor(.white, for: .normal)
         
         button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         
-//        button.isEnabled = false
+        button.isEnabled = false
         
         return button
     }()
@@ -75,6 +87,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupContentView()
+        print(view.frame.width)
     }
     
     fileprivate func setupContentView() {
