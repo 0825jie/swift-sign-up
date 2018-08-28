@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     let timeClockLabel : UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString(string: "Time Clock", attributes: [ NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 32)])
+        let attributedText = NSMutableAttributedString(string: "Time Clock", attributes: [ NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 52)])
         label.attributedText = attributedText
         label.textAlignment = .center
         return label
@@ -24,26 +24,52 @@ class ViewController: UIViewController {
         return image
     }()
     
-    let emailField : UITextField = {
-        let field = UITextField()
-        let attributedPlaceholder = NSAttributedString(string: "Email:", attributes: [NSAttributedStringKey.foregroundColor : UIColor(red: 0.7569, green: 0.7686, blue: 0.7529, alpha: 1.0).cgColor])
-        field.attributedPlaceholder = attributedPlaceholder
-        return field
+    
+    // email input
+    let emailTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Email"
+        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        tf.borderStyle = .roundedRect
+        tf.font = UIFont.systemFont(ofSize: 14)
+        
+//        tf.addTarget(self, action: #selector(), for: .editingChanged)
+        
+        return tf
     }()
     
-    let passwordField: UITextField = {
-        let field = UITextField()
-        let attributedPlaceholder = NSMutableAttributedString(string: "Email:", attributes: [NSAttributedStringKey.foregroundColor : UIColor(red: 0.7569, green: 0.7686, blue: 0.7529, alpha: 1.0).cgColor])
-        field.attributedPlaceholder = attributedPlaceholder
-        return field
+    //password
+    let passwordTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Password"
+        tf.isSecureTextEntry = true
+        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        tf.borderStyle = .roundedRect
+        tf.font = UIFont.systemFont(ofSize: 14)
+//        tf.addTarget(self, action: #selector(), for: .editingChanged)
+        return tf
     }()
     
-    let signUpButton : UIButton = {
-        let button = UIButton()
+    let signUpButton: UIButton = {
+        let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
-        button.backgroundColor = .H2f3b6a
+        button.backgroundColor = UIColor(red: 0.7569, green: 0.7686, blue: 0.7529, alpha: 1.0)
+        
+        button.layer.cornerRadius = 5
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.white, for: .normal)
+        
+        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        
+//        button.isEnabled = false
+        
         return button
     }()
+    
+    @objc func handleSignUp() {
+        let nextPage = SignUpInfo()
+        present(nextPage, animated: true, completion: nil)
+    }
     
 
     override func viewDidLoad() {
@@ -54,33 +80,24 @@ class ViewController: UIViewController {
     fileprivate func setupContentView() {
         view.backgroundColor = .white
         view.addSubview(timeClockLabel)
-        timeClockLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 60, paddingLeft: (view.frame.width - 300) / 2, paddingBottom: 0, paddingRight: 0, width: 300, height: 50)
+        timeClockLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 100, paddingLeft: (view.frame.width - 500) / 2, paddingBottom: 0, paddingRight: 0, width: 500, height: 90)
         
         view.addSubview(timeGraphic)
-        timeGraphic.anchor(top: timeClockLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 24, paddingLeft: (view.frame.width - 64) / 2, paddingBottom: 0, paddingRight: 0, width: 72, height: 72)
+        timeGraphic.anchor(top: timeClockLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 54, paddingLeft: (view.frame.width - 164) / 2, paddingBottom: 0, paddingRight: 0, width: 164, height: 164)
         
-        
-        
-        setStackView()
-       
-
-//        view.addSubview(passwordField)
-//        passwordField.anchor(top: emailField.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: view.frame.width*0.14, paddingBottom: 0, paddingRight: 0, width: view.frame.width*0.72, height: 30)
-
-        view.addSubview(signUpButton)
-        signUpButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor , right: nil, paddingTop: 36, paddingLeft: view.frame.width*0.22, paddingBottom: 70, paddingRight: 0, width: view.frame.width*0.56, height: 42)
-
+        setupInputFields()
         
     }
     
-    fileprivate func setStackView() {
-        let stackView = UIStackView(arrangedSubviews: [emailField, passwordField])
+    fileprivate func setupInputFields() {
+        let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, signUpButton])
+        
         stackView.axis = .vertical
+        stackView.spacing = 20
+        stackView.distribution = .fillEqually
         
-        
-//         emailField.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 24, paddingLeft: view.frame.width*0.14, paddingBottom: 0, paddingRight: 0, width: view.frame.width*0.72, height: 30)
-//
-//        passwordField.anchor(top: emailField.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: view.frame.width*0.14, paddingBottom: 0, paddingRight: 0, width: view.frame.width*0.72, height: 30)
+        view.addSubview(stackView)
+        stackView.anchor(top: timeGraphic.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 140, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 240)
     }
 
 
