@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 18)
         
-        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+//        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         
         return tf
     }()
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 18)
-        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+//        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
     
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
     let signUpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
-        button.backgroundColor = UIColor(red: 0.6392, green: 0.702, blue: 0.8196, alpha: 1.0)
+        button.backgroundColor = .H2f3b6a
         
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
@@ -73,10 +73,32 @@ class ViewController: UIViewController {
         
         button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         
-        button.isEnabled = false
+//        button.isEnabled = false
         
         return button
     }()
+    
+    let useClockIDButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        // first part string in gray color
+        let attributedTitle = NSMutableAttributedString(string: "Setting up by?", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16), NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+        // append Sign In in Blue Color
+        attributedTitle.append(NSAttributedString(string: " Clock ID", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedStringKey.foregroundColor: UIColor(red: 0.2549, green: 0.2784, blue: 0.4392, alpha: 1.0)
+            ]))
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        
+        // triger function to set up clock by Clock ID
+        button.addTarget(self, action: #selector(setUpByClockID), for: .touchUpInside)
+        return button
+    }()
+    
+    // jump to setup by clock id
+    @objc func setUpByClockID() {
+        let getClockID = GetClockID()
+        self.present(getClockID, animated: true, completion: nil)
+    }
     
     @objc func handleSignUp() {
         let nextPage = SignUpInfo()
@@ -100,6 +122,9 @@ class ViewController: UIViewController {
         
         setupInputFields()
         
+        view.addSubview(useClockIDButton)
+        useClockIDButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        
     }
     
     fileprivate func setupInputFields() {
@@ -110,7 +135,7 @@ class ViewController: UIViewController {
         stackView.distribution = .fillEqually
         
         view.addSubview(stackView)
-        stackView.anchor(top: timeGraphic.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 140, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 240)
+        stackView.anchor(top: timeGraphic.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 100, paddingLeft: 100, paddingBottom: 0, paddingRight: 100, width: 0, height: 260)
     }
 
 

@@ -160,11 +160,11 @@ class SignUpInfo: UIViewController{
         stackView.distribution = .fillEqually
         
         view.addSubview(stackView)
-        stackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 140, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 360)
+        stackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 140, paddingLeft: 100, paddingBottom: 0, paddingRight: 100, width: 0, height: 360)
         
         
         view.addSubview(faceIdView)
-        faceIdView.anchor(top: stackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 200, height: 80)
+        faceIdView.anchor(top: stackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 100, paddingBottom: 0, paddingRight: 100, width: 200, height: 80)
         
         faceIdView.addSubview(FaceIdLabel)
         FaceIdLabel.anchor(top: faceIdView.topAnchor, left: faceIdView.leftAnchor, bottom: faceIdView.bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 18, paddingBottom: 5, paddingRight: 0, width: 200, height: 0)
@@ -175,7 +175,7 @@ class SignUpInfo: UIViewController{
         
         view.addSubview(PINKeyView)
         
-        PINKeyView.anchor(top: faceIdView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 80)
+        PINKeyView.anchor(top: faceIdView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 16, paddingLeft: 100, paddingBottom: 0, paddingRight: 100, width: 0, height: 80)
         
         PINKeyView.addSubview(PINKeyLabel)
         
@@ -185,19 +185,19 @@ class SignUpInfo: UIViewController{
         PinKeySwitch.centerYAnchor.constraint(equalTo: PINKeyView.centerYAnchor).isActive = true
         PinKeySwitch.anchor(top: nil, left: nil, bottom: nil, right: PINKeyView.rightAnchor, paddingTop: 5, paddingLeft: 0, paddingBottom: 5, paddingRight: 18, width: 0, height: 0)
         
-        view.addSubview(badgeView)
-        badgeView.anchor(top: PINKeyView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 80)
-        
-        badgeView.addSubview(badgeLabel)
-        badgeLabel.anchor(top: badgeView.topAnchor, left: badgeView.leftAnchor, bottom: badgeView.bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 18, paddingBottom: 5, paddingRight: 0, width: 200, height: 0)
-        
-        badgeView.addSubview(badgeSwitch)
-        badgeSwitch.centerYAnchor.constraint(equalTo: badgeView.centerYAnchor).isActive = true
-        badgeSwitch.anchor(top: nil, left: nil, bottom: nil, right: badgeView.rightAnchor, paddingTop: 5, paddingLeft: 0, paddingBottom: 5, paddingRight: 18, width: 0, height: 0)
-        
+//        view.addSubview(badgeView)
+//        badgeView.anchor(top: PINKeyView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 100, paddingBottom: 0, paddingRight: 100, width: 0, height: 80)
+//        
+//        badgeView.addSubview(badgeLabel)
+//        badgeLabel.anchor(top: badgeView.topAnchor, left: badgeView.leftAnchor, bottom: badgeView.bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 18, paddingBottom: 5, paddingRight: 0, width: 200, height: 0)
+//        
+//        badgeView.addSubview(badgeSwitch)
+//        badgeSwitch.centerYAnchor.constraint(equalTo: badgeView.centerYAnchor).isActive = true
+//        badgeSwitch.anchor(top: nil, left: nil, bottom: nil, right: badgeView.rightAnchor, paddingTop: 5, paddingLeft: 0, paddingBottom: 5, paddingRight: 18, width: 0, height: 0)
+//        
         
         view.addSubview(doneButton)
-        doneButton.anchor(top: badgeView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 40, paddingBottom: 0, paddingRight: 40, width: 0, height: 80)
+        doneButton.anchor(top: PINKeyView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 16, paddingLeft: 100, paddingBottom: 0, paddingRight: 100, width: 0, height: 80)
         
         
     }
